@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+<head>
+    <meta charset="utf-8">
+    <title>深圳高校教育网IPv6支持情况</title>
+</head>
+
+<body>
+<div id="wrapper">
+    <el-container>
+        <el-header>
+            <div class="container">
+                <h1 class="display-6" style="font-size: 40px">深圳高校教育网HTTP、HTTPS、HTTP/2支持情况</h1>
+                <!--                <p class="lead"></p><form method="get" action="onlinecheck.php">请输入主机名：<input name="hostname" value="www.ustc.edu.cn"><input type="submit" name="cmd" value="开始测试">-->
+            </div>
+        </el-header>
+
+        <el-main>
+            <el-table
+                    :data="result.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+                    border
+                    stripe
+                    style="width: 100%">
+                <el-table-column>
+                    <template slot="header" slot-scope="scope">
+                        <el-input
+                                v-model="search"
+                                size="mini"
+                                prefix-icon="el-icon-search"
+                                placeholder="请输入学校名字搜索，如：深圳大学">
+                        </el-input>
+                    </template>
+                    <el-table-column
+                        type="index">
+                    </el-table-column>
+                    <el-table-column
+                            prop="name"
+                            label="单位"
+                            width="190">
+                    </el-table-column>
+                    <el-table-column
+                            prop="hostname"
+                            label="网站"
+                            width="200">
+<!--                        <template slot-scope="scope">-->
+<!--                            <a href="'https://'+{{scope.row.hostname}}">{{ scope.row.hostname }}</a>-->
+<!--                        </template>-->
+                    </el-table-column>
+                    <el-table-column
+                            prop="ipv4"
+                            label="v4 HTTP"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="httpsv4"
+                            label="v4 HTTPS"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="http2v4"
+                            label="v4 HTTP2"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="aaaa"
+                            label="v6解析"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="ipv6"
+                            label="v6 HTTP"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="httpsv6"
+                            label="v6 HTTPS"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="http2v6"
+                            label="v6 HTTP2"
+                            sortable>
+                    </el-table-column>
+                    <el-table-column
+                            prop="score"
+                            label="得分"
+                            sortable>
+                    </el-table-column>
+                </el-table-column>
+            </el-table>
+            <p>共<span>{{result.length}}</span>条数据&nbsp;&nbsp;&nbsp;&nbsp;
+                测试时间 <span>{{time}}</span></p>
+        </el-main>
+    </el-container>
+</div>
+
+<script src="./js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
+<script src="./js/http_cdn.bootcdn.net_ajax_libs_axios_0.21.1_axios.js"></script>
+<!-- 引入组件库 -->
+<script src="./js/http_unpkg.com_element-ui_lib_index.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+<script>
+    var app = new Vue({
+        el:"#wrapper",
+        data:{
+            result:[],
+            time:"",
+            search:"",
+        },
+        mounted:function (){
+            this.getResult();
+        },
+        methods:{
+            getResult:function (){
+                axios.get("./result.json.php")
+                    .then((response)=>{
+                        //console.log(response.data);
+                        this.result = response.data.result;
+                        this.time = response.data.endDatetime;
+                    },function (err){
+                        console.log(err);
+                    });
+            },
+        }
+    })
+</script>
+</body>
+</html>

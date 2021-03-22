@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>后台登陆页面</title>
+
+</head>
+<body>
+
+
+<div class="login" >
+    <div class="login-wrap" >
+        <el-row type="flex" justify="center">
+            <el-form :model="user" label-width="80px" >
+                <h3>登录</h3>
+                <hr>
+                <el-form-item prop="username" label="用户名" :rules="{ required: true, message: '用户名不能为空'}">
+                    <el-input v-model="user.username" placeholder="请输入用户名" prefix-icon></el-input>
+                </el-form-item>
+                <el-form-item id="password" prop="password" label="密码" :rules="{ required: true, message: '密码不能为空'}">
+                    <el-input v-model="user.password" show-password placeholder="请输入密码"></el-input>
+                    <el-button type="primary" size="mini" @click="doLogin">登 录</el-button>
+                </el-form-item>
+            </el-form>
+        </el-row>
+    </div>
+</div>
+
+<script src="./js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
+<script src="./js/http_cdn.bootcdn.net_ajax_libs_axios_0.21.1_axios.js"></script>
+<!-- 引入组件库 -->
+<script src="./js/http_unpkg.com_element-ui_lib_index.js"></script>
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <script>
+        var app = new Vue({
+            el: ".login",
+            data: {
+                user: {
+                    username: "",
+                    password: "",
+                },
+            },
+            created() {
+            },
+            methods: {
+                doLogin() {
+                    if (!this.user.username) {
+                        this.$message.error("请输入用户名！");
+                    } else if (!this.user.password) {
+                        this.$message.error("请输入密码！");
+                    } else {
+                        //校验用户名和密码是否正确;
+                        // this.$router.push({ path: "/personal" });
+                        let data = new FormData()
+                        data.append('username', this.user.username)
+                        data.append('password', this.user.password)
+                        axios.post('./login.php', data).then(res => {
+                             console.log(res);
+                            if (res.data === "sucess") {
+                                // document.cookie = this.user.username + this.user.password;
+                                // console.log(document.cookie);
+                                window.location.href="./admin.php";
+                                // this.$router.push({path: "./admin.html"});
+                            } else {
+                                alert("您输入的用户名或密码错误！");
+                            }
+                        })
+                    }
+                },
+            }
+        })
+    </script>
+
+</body>
+</html>

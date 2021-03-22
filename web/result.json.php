@@ -41,13 +41,13 @@ while ($stmt->fetch()) {
     echo "\"aaaa\": "; echo intval($aaaa); echo ",";
     echo "\"ipv6\": "; echo intval($ipv6); echo ",";
     echo "\"httpsv6\": "; echo intval($httpsv6); echo ",";
-    echo "\"http2v6\": "; echo intval($http2v6); echo "}";
-//    echo "\"score\": ";
-//    $score = ($dnssc + $ipv4 * 3 + $httpsv4 + $http2v4 + $aaaa + $ipv6 + $httpsv6 + $http2v6) * 10;
+    echo "\"http2v6\": "; echo intval($http2v6); echo ",";
+    echo "\"score\": ";
+    $score = ( $ipv4 * 4 + $httpsv4 + $http2v4 + $aaaa + $ipv6 + $httpsv6 + $http2v6) * 10;
 //    if ($score == 100)
 //        $score += get_addon($hostname);
-//    echo $score;
-//    echo "}";
+    echo $score;
+    echo "}";
 }
 echo "\n";
 $stmt->close();
