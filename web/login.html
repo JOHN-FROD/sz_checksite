@@ -12,7 +12,7 @@
     <div class="login-wrap" >
         <el-row type="flex" justify="center">
             <el-form :model="user" label-width="80px" >
-                <h3>登录</h3>
+                <h1 style="text-align: center; font-size: 30px" >登录</h1>
                 <hr>
                 <el-form-item prop="username" label="用户名" :rules="{ required: true, message: '用户名不能为空'}">
                     <el-input v-model="user.username" placeholder="请输入用户名" prefix-icon></el-input>
