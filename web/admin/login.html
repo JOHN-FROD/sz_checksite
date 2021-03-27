@@ -26,10 +26,10 @@
     </div>
 </div>
 
-<script src="./js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
-<script src="./js/http_cdn.bootcdn.net_ajax_libs_axios_0.21.1_axios.js"></script>
+<script src="../js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
+<script src="../js/http_cdn.bootcdn.net_ajax_libs_axios_0.21.1_axios.js"></script>
 <!-- 引入组件库 -->
-<script src="./js/http_unpkg.com_element-ui_lib_index.js"></script>
+<script src="../js/http_unpkg.com_element-ui_lib_index.js"></script>
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
@@ -59,10 +59,7 @@
                         axios.post('./login.php', data).then(res => {
                              console.log(res);
                             if (res.data === "sucess") {
-                                // document.cookie = this.user.username + this.user.password;
-                                // console.log(document.cookie);
-                                window.location.href="./admin.php";
-                                // this.$router.push({path: "./admin.html"});
+                                window.location.href="admin.php";
                             } else {
                                 alert("您输入的用户名或密码错误！");
                             }

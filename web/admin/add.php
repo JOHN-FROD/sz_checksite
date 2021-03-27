@@ -1,6 +1,16 @@
 <?php
 
-include "db.php";
+include "../db.php";
+
+$session = $_COOKIE['session'];
+$q = "select uname from user where uname=? ";
+$stmt = $mysqli->prepare($q);
+$stmt->bind_param("s", $session);
+$stmt->execute();
+if ($stmt->fetch()){
+}else {
+    header("location: login.html");
+}
 
 function insert_site($hostname,$name)
 {

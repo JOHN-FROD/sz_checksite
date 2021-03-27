@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    include ('db.php');
+    include('../db.php');
     $session = $_COOKIE['session'];
     $q = "select uname from user where uname=? ";
     $stmt = $mysqli->prepare($q);
@@ -135,26 +135,14 @@
     </el-container>
 </div>
 
-<script src="./js/http_cdn.bootcdn.net_ajax_libs_axios_0.21.1_axios.js"></script>
-<script src="./js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
+<script src="../js/http_cdn.bootcdn.net_ajax_libs_axios_0.21.1_axios.js"></script>
+<script src="../js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
 <!-- 引入组件库 -->
-<script src="./js/http_unpkg.com_element-ui_lib_index.js"></script>
+<script src="../js/http_unpkg.com_element-ui_lib_index.js"></script>
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
 <script>
-    // var cookie = document.cookie.split(';');
-    // var regex = /session=/;
-    // var session = "";
-    // for(var i=0; i<cookie.length; i++) {
-    //     var cookies = cookie[i].trim();
-    //     if (cookies.match(regex)){
-    //         session =cookies.split('=')[1];
-    //     }
-    // }
-    // if (session !== "xxzxadmin"){
-    //     window.location.href="./login.html";
-    // }
     var app = new Vue({
         el:"#wrapper",
         data:{
@@ -178,7 +166,7 @@
         },
         methods:{
             getResult:function (){
-                axios.get("./result.json.php")
+                axios.get("../result.json.php")
                     .then((response)=>{
                         //console.log(response.data);
                         this.result = response.data.result;
