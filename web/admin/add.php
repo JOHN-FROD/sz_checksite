@@ -2,15 +2,19 @@
 
 include "../db.php";
 
-$session = $_COOKIE['session'];
-$q = "select uname from user where uname=? ";
-$stmt = $mysqli->prepare($q);
-$stmt->bind_param("s", $session);
-$stmt->execute();
-if ($stmt->fetch()){
-}else {
-    header("location: login.html");
+
+function valid($session){
+    global $mysqli;
+    $q = "select uname from user where uname=? ";
+    $stmt = $mysqli->prepare($q);
+    $stmt->bind_param("s", $session);
+    $stmt->execute();
+    if ($stmt->fetch()){
+    }else {
+        header("location: login.html");
+    }
 }
+
 
 function insert_site($hostname,$name)
 {
@@ -76,6 +80,8 @@ function checkhostname($str) {
     }
 }
 
+$session = $_COOKIE['session'];
+valid($session);
 
 $name = $_POST['name'];
 $hostname = $_POST['hostname'];
@@ -95,7 +101,7 @@ if ($stmt->fetch()) {
     echo "已经存在记录";
     exit(0);
 }
-
 $stmt->close();
+
 insert_site($hostname,$name);
 exit(0);

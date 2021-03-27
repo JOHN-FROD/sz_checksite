@@ -23,7 +23,7 @@
     <el-container>
         <el-header>
             <div class="container">
-                <h1 class="display-6" style="font-size: 50px">后台管理页面</h1>
+                <h1 class="display-6">后台管理页面</h1>
                 <!--                <p class="lead"></p><form method="get" action="onlinecheck.php">请输入主机名：<input name="hostname" value="www.ustc.edu.cn"><input type="submit" name="cmd" value="开始测试">-->
             </div>
         </el-header>
