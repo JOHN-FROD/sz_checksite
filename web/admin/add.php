@@ -12,6 +12,7 @@ function valid($session){
     if ($stmt->fetch()){
     }else {
         header("location: login.html");
+        die("您无权访问,请先登陆");
     }
 }
 
