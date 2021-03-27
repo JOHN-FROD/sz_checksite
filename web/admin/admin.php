@@ -1,16 +1,17 @@
-<!DOCTYPE html>
 <?php
-    include('../db.php');
-    $session = $_COOKIE['session'];
-    $q = "select uname from user where uname=? ";
-    $stmt = $mysqli->prepare($q);
-    $stmt->bind_param("s", $session);
-    $stmt->execute();
-    if ($stmt->fetch()){
-    }else {
-        header("location: login.html");
-    }
+include('../db.php');
+$session = $_COOKIE['session'];
+$q = "select uname from user where uname=? ";
+$stmt = $mysqli->prepare($q);
+$stmt->bind_param("s", $session);
+$stmt->execute();
+if ($stmt->fetch()){
+}else {
+    header("location: login.html");
+    die("您无权访问,请先登陆");
+}
 ?>
+<!DOCTYPE html>
 <html lang="zh-CN" >
 
 <head>
