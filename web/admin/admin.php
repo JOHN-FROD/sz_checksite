@@ -33,6 +33,7 @@ if ($stmt->fetch()){
             <el-main>
                 <el-table
                     :data="result.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+                    :default-sort = "{prop: 'score', order: 'descending'}"
                     border
                     stripe
                     @selection-change="handleSelectionChange"
@@ -41,7 +42,7 @@ if ($stmt->fetch()){
                         <template slot="header" slot-scope="scope">
                             <el-input
                                 v-model="search"
-                                size="mini"
+                                size="medium"
                                 prefix-icon="el-icon-search"
                                 placeholder="请输入学校名字搜索，如：深圳大学">
                             </el-input>
@@ -92,7 +93,7 @@ if ($stmt->fetch()){
                         <el-table-column
                             align="right">
                             <template slot="header" slot-scope="scope">
-                                <el-button type="primary" size="mini" @click="dialogAddVisible = true" icon="el-icon-plus">添加学校</el-button>
+                                <el-button type="primary" size="medium" @click="dialogAddVisible = true" icon="el-icon-plus">添加学校</el-button>
                                 <el-dialog title="添加学校和域名" :visible.sync="dialogAddVisible" align="left">
                                     <el-form :model="add">
                                         <el-form-item label="学校名称" :rules="{ required: true, message: '校名不能为空'}">
@@ -107,10 +108,10 @@ if ($stmt->fetch()){
                                         <el-button type="primary" @click="onAdd" >添 加</el-button>
                                     </div>
                                 </el-dialog>
-                                <el-button size="mini" type="danger" icon="el-icon-delete" @click="onBatchDelete" :disabled="multipleSelection.length === 0">批量删除</el-button>
+                                <el-button size="medium" type="danger" icon="el-icon-delete" @click="onBatchDelete" :disabled="multipleSelection.length === 0">批量删除</el-button>
                             </template>
                             <template slot-scope="scope">
-                                <el-button type="text" @click="onEdit(scope.$index, scope.row)" size="small" icon="el-icon-edit">编辑</el-button>
+                                <el-button type="text" @click="onEdit(scope.$index, scope.row)" size="medium" icon="el-icon-edit">编辑</el-button>
                                 <el-dialog title="编辑学校和域名" :visible.sync="dialogEditVisible" align="left">
                                     <el-form :model="editForm">
                                         <el-form-item label="学校名称" :rules="{ required: true, message: '校名不能为空'}">
@@ -125,7 +126,7 @@ if ($stmt->fetch()){
                                         <el-button type="primary" @click="onUpdate" >确 定</el-button>
                                     </div>
                                 </el-dialog>
-                                <el-button type="text" size="small" @click="onDelete(scope.$index, scope.row)" icon="el-icon-delete">删除</el-button>
+                                <el-button type="text" size="medium" @click="onDelete(scope.$index, scope.row)" icon="el-icon-delete">删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table-column>
@@ -200,13 +201,20 @@ if ($stmt->fetch()){
                         data.append('name', this.add.name)
                         data.append('hostname', this.add.hostname)
                         axios.post('./add.php', data).then(res => {
-                            console.log(res)
+                            //console.log(res)
+                            if(res.data === 'success'){
+                                this.$message({
+                                    type: "success",
+                                    message: "添加成功!"
+                                });
+                            }else {
+                                this.$message({
+                                    type: "error",
+                                    message: "添加失败! " + res.data
+                                });
+                            }
                         })
                         this.add = {};
-                        this.$message({
-                            type: "success",
-                            message: "添加成功!"
-                        });
                     })
                     .catch(() => {
                         this.$message({
@@ -302,11 +310,22 @@ if ($stmt->fetch()){
                         data.append('name', this.editForm.name)
                         axios.post('./edit.php', data).then(res => {
                             console.log(res.data)
+                            if(res.data === 'success'){
+                                this.$message({
+                                    type: "success",
+                                    message: "编辑成功!"
+                                });
+                            }else {
+                                this.$message({
+                                    type: "error",
+                                    message: "编辑失败! " + res.data
+                                });
+                            }
                         })
-                        this.$message({
-                            type: "success",
-                            message: "编辑成功!"
-                        });
+                        // this.$message({
+                        //     type: "success",
+                        //     message: "编辑成功!"
+                        // });
                     })
                     .catch(() => {
                         this.$message({

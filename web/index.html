@@ -12,13 +12,13 @@
         <el-header>
             <div class="container">
                 <h1 class="display-6">深圳高校教育网HTTP、HTTPS、HTTP/2支持情况</h1>
-                <!--                <p class="lead"></p><form method="get" action="onlinecheck.php">请输入主机名：<input name="hostname" value="www.ustc.edu.cn"><input type="submit" name="cmd" value="开始测试">-->
             </div>
         </el-header>
 
         <el-main>
             <el-table
                     :data="result.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+                    :default-sort = "{prop: 'score', order: 'descending'}"
                     border
                     stripe
                     style="width: 100%">
@@ -42,10 +42,7 @@
                     <el-table-column
                             prop="hostname"
                             label="网站"
-                            width="200">
-<!--                        <template slot-scope="scope">-->
-<!--                            <a href="'https://'+{{scope.row.hostname}}">{{ scope.row.hostname }}</a>-->
-<!--                        </template>-->
+                            width="230">
                     </el-table-column>
                     <el-table-column
                             prop="ipv4"

@@ -20,12 +20,13 @@ function valid($session){
 function insert_site($hostname,$name)
 {
     global $mysqli;
-    echo "insert_site\n";
+    //echo "insert_site\n";
     $q = "insert into site values(?, ?)";
     $stmt = $mysqli->prepare($q);
     $stmt->bind_param("ss", $hostname,$name );
     $stmt->execute();
     $stmt->close();
+    echo "success";
 }
 
 
@@ -76,7 +77,7 @@ function checkhostname($str) {
             continue;
         if (strchr("_", $str[$i]))      //检查是否为_
             continue;
-        echo "$str 中第 $i 非法字符 $str[$i]";       //假若全都不是则输出报错信息，并退出
+        echo "$str 中存在非法字符 $str[$i]";       //假若全都不是则输出报错信息，并退出
         exit(0);
     }
 }
