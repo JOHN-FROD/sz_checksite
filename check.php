@@ -15,6 +15,7 @@ $stmt->bind_result($hostname);
 $stmt->store_result();
 while ($stmt->fetch()) {
     system("php checksite.php $hostname $timeout");
+    system("php check_hacked.php $hostname");
 }
 $stmt->close();
 

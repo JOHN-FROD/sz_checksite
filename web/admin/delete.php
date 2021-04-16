@@ -24,6 +24,12 @@ function delete_site($hostname)
     $stmt->bind_param("s", $hostname );
     $stmt->execute();
     $stmt->close();
+
+    $q = "delete from status_last where hostname = ?";
+    $stmt = $mysqli->prepare($q);
+    $stmt->bind_param("s", $hostname );
+    $stmt->execute();
+    $stmt->close();
 }
 
 
