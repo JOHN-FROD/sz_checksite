@@ -29,7 +29,6 @@ if ($stmt->fetch()){
             </div>
         </el-header>
         <el-container>
-            <!--            <el-aside width="200px">Aside</el-aside>-->
             <el-main>
                 <el-table
                     :data="result.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
@@ -55,9 +54,10 @@ if ($stmt->fetch()){
                             type="index"
                             width="40">
                         </el-table-column>
-                        <el-table-column type="expand" width="40">
+                        <el-table-column type="expand" width="50" label="详情">
                             <template slot-scope="props">
                                 <el-form label-position="left" inline class="demo-table-expand">
+                                    <h3>协议支持情况</h3>
                                     <el-form-item label="v4 HTTP">
                                         <span>{{ props.row.ipv4 }}</span>
                                     </el-form-item>
@@ -78,6 +78,14 @@ if ($stmt->fetch()){
                                     </el-form-item>
                                     <el-form-item label="v6 HTTP2">
                                         <span>{{ props.row.http2v6 }}</span>
+                                    </el-form-item>
+                                    <br/>
+                                    <h3>是否存在被黑风险</h3>
+                                    <el-form-item label="是否被篡改">
+                                        <span>{{ props.row.hacked  }}；</span>
+                                    </el-form-item>
+                                    <el-form-item label="篡改的敏感词">
+                                        <span>{{ props.row.keyword }}</span>
                                     </el-form-item>
                                 </el-form>
                             </template>
@@ -131,7 +139,7 @@ if ($stmt->fetch()){
                         </el-table-column>
                     </el-table-column>
                 </el-table>
-                <p>共<span>{{result.length}}</span>条数据</p>
+                <p>共<span>{{result.length}}</span>条数据&nbsp;&nbsp;&nbsp;&nbsp;测试时间 <span>{{time}}</span></p>
             </el-main>
         </el-container>
     </el-container>

@@ -18,11 +18,14 @@ $stmt->close();
 echo "\"endDatetime\": \"$lasttm\",\n";
 echo "\"result\": [\n";
 
-$q = "select site.hostname, site.name, status_last.ipv4, status_last.httpsv4, status_last.http2v4, status_last.aaaa, status_last.ipv6, status_last.httpsv6, status_last.http2v6 from `site` left join status_last on site.hostname = status_last.hostname order by (status_last.ipv4 + status_last.httpsv4 + status_last.http2v4 + status_last.aaaa + status_last.ipv6 + status_last.httpsv6 + status_last.http2v6 ) desc limit 50";
+//$q = "select site.hostname, site.name, status_last.ipv4, status_last.httpsv4, status_last.http2v4, status_last.aaaa, status_last.ipv6, status_last.httpsv6, status_last.http2v6 from `site` left join status_last on site.hostname = status_last.hostname order by (status_last.ipv4 + status_last.httpsv4 + status_last.http2v4 + status_last.aaaa + status_last.ipv6 + status_last.httpsv6 + status_last.http2v6 ) desc limit 50";
+$q = "select site.hostname, site.name, status_last.ipv4, status_last.httpsv4, status_last.http2v4, status_last.aaaa, status_last.ipv6, status_last.httpsv6, status_last.http2v6, hacked_site.hacked, hacked_site.keyword
+from site left join status_last on site.hostname = status_last.hostname
+left join hacked_site on site.hostname = hacked_site.hostname order by (status_last.ipv4 + status_last.httpsv4 + status_last.http2v4 + status_last.aaaa + status_last.ipv6 + status_last.httpsv6 + status_last.http2v6 ) desc limit 50";
 $stmt = $mysqli->prepare($q);
 $stmt->execute();
 $cnt = 0;
-$stmt->bind_result($hostname, $name, $ipv4, $httpsv4, $http2v4, $aaaa, $ipv6, $httpsv6, $http2v6);
+$stmt->bind_result($hostname, $name, $ipv4, $httpsv4, $http2v4, $aaaa, $ipv6, $httpsv6, $http2v6,  $hacked, $keyword);
 $stmt->store_result();
 $isfirst = 1;
 while ($stmt->fetch()) {
@@ -42,6 +45,8 @@ while ($stmt->fetch()) {
     echo "\"ipv6\": "; echo intval($ipv6); echo ",";
     echo "\"httpsv6\": "; echo intval($httpsv6); echo ",";
     echo "\"http2v6\": "; echo intval($http2v6); echo ",";
+    echo "\"hacked\": "; echo intval($hacked); echo ",";
+    echo "\"keyword\": "; echo "\"".$keyword."\""; echo ",";
     echo "\"score\": ";
     $score = ( $ipv4 * 4 + $httpsv4 + $http2v4 + $aaaa + $ipv6 + $httpsv6 + $http2v6) * 10;
 //    if ($score == 100)
