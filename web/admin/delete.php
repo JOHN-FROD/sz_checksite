@@ -30,6 +30,12 @@ function delete_site($hostname)
     $stmt->bind_param("s", $hostname );
     $stmt->execute();
     $stmt->close();
+
+    $q = "delete from hacked_site where hostname = ?";
+    $stmt = $mysqli->prepare($q);
+    $stmt->bind_param("s", $hostname );
+    $stmt->execute();
+    $stmt->close();
 }
 
 
