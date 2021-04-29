@@ -79,7 +79,7 @@ if ($stmt->fetch()){
 <!--                                    <el-form-item label="v6 HTTP2">-->
                                         <span>v6 HTTP2: {{ props.row.http2v6 }}; </span>
 <!--                                    </el-form-item>-->
-                                    <h3>网络质量</h3>
+                                    <h3>IPv6网络质量</h3>
 <!--                                    <el-form-item label="丢包率">-->
                                         <span>丢包率: {{ props.row.loss }}; </span>
 <!--                                    </el-form-item>-->

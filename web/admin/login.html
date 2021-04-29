@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
     <meta charset="UTF-8">
     <title>后台登陆页面</title>
 
 </head>
-<body>
+<body style="height: 100%">
 
 
-<div class="login" >
-    <div class="login-wrap" >
-        <el-row type="flex" justify="center">
-            <el-form :model="user" label-width="80px" >
-                <h1 style="text-align: center; font-size: 30px" >登录</h1>
-                <hr>
-                <el-form-item prop="username" label="用户名" :rules="{ required: true, message: '用户名不能为空'}">
+<div class="login" style="height: 600px">
+<!--    <div class="login-wrap" style="height: 100%">-->
+        <el-row align="middle" justify="center" style="height: 100%" type="flex">
+            <el-form :model="user" style="width: 40%;padding:20px; box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
+                <h1 style="text-align: center; font-size: 30px">后台登录</h1>
+                <el-form-item prop="username" label="用户名"
+                              :rules="{ required: true, message: '用户名不能为空'}"
+                              label-position="left" label-width="80px">
                     <el-input v-model="user.username" placeholder="请输入用户名" prefix-icon></el-input>
                 </el-form-item>
-                <el-form-item id="password" prop="password" label="密码" :rules="{ required: true, message: '密码不能为空'}">
+                <el-form-item id="password" prop="password" label="密码"
+                              label-position="left" label-width="80px"
+                              :rules="{ required: true, message: '密码不能为空'}">
                     <el-input v-model="user.password" show-password placeholder="请输入密码"></el-input>
-                    <el-button type="primary" size="mini" @click="doLogin">登 录</el-button>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" size="medium" @click="doLogin"
+                               style="width: 150px;position:absolute;left: 35%">登 录</el-button>
                 </el-form-item>
             </el-form>
         </el-row>
-    </div>
+<!--    </div>-->
 </div>
 
 <script src="../js/http_cdn.jsdelivr.net_npm_vue_dist_vue.js"></script>
