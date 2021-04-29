@@ -18,4 +18,5 @@ while ($stmt->fetch()) {
     system("php check_hacked.php $hostname");
 }
 $stmt->close();
+system("php check_speed.php");
 

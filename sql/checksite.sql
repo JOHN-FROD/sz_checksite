@@ -107,6 +107,44 @@ CREATE TABLE `user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `speed`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `speed` (
+    `hostname` varchar(200) NOT NULL,
+    `tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `loss` varchar(200) DEFAULT NULL,
+    `min` varchar(200) DEFAULT NULL,
+    `avg` varchar(200) DEFAULT NULL,
+    `max` varchar(200) DEFAULT NULL,
+    `mdev` varchar(200) DEFAULT NULL,
+    PRIMARY KEY (`hostname`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `hacked_site`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `hacked_site` (
+   `hostname` varchar(200) NOT NULL,
+   `tm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `hacked` int(1) NOT NULL,
+   `keyword` varchar(200) DEFAULT NULL,
+   PRIMARY KEY (`hostname`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

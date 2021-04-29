@@ -36,6 +36,12 @@ function delete_site($oldhostname)
     $stmt->bind_param("s", $hostname );
     $stmt->execute();
     $stmt->close();
+
+    $q = "delete from speed where hostname = ?";
+    $stmt = $mysqli->prepare($q);
+    $stmt->bind_param("s", $hostname );
+    $stmt->execute();
+    $stmt->close();
 }
 
 function insert_site($hostname,$name)

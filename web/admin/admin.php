@@ -58,35 +58,50 @@ if ($stmt->fetch()){
                             <template slot-scope="props">
                                 <el-form label-position="left" inline class="demo-table-expand">
                                     <h3>协议支持情况</h3>
-                                    <el-form-item label="v4 HTTP">
-                                        <span>{{ props.row.ipv4 }}</span>
-                                    </el-form-item>
-                                    <el-form-item label="v4 HTTPS">
-                                        <span>{{ props.row.httpsv4 }}</span>
-                                    </el-form-item>
-                                    <el-form-item label="v4 HTTP2">
-                                        <span>{{ props.row.http2v4 }}</span>
-                                    </el-form-item>
-                                    <el-form-item label="v6解析">
-                                        <span>{{ props.row.aaaa }}</span>
-                                    </el-form-item>
-                                    <el-form-item label="v6 HTTP">
-                                        <span>{{ props.row.ipv6 }}</span>
-                                    </el-form-item>
-                                    <el-form-item label="v6 HTTPS">
-                                        <span>{{ props.row.httpsv6 }}</span>
-                                    </el-form-item>
-                                    <el-form-item label="v6 HTTP2">
-                                        <span>{{ props.row.http2v6 }}</span>
-                                    </el-form-item>
-                                    <br/>
+<!--                                    <el-form-item label="v4 HTTP">-->
+                                        <span>v4 HTTP: {{ props.row.ipv4 }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="v4 HTTPS">-->
+                                        <span>v4 HTTPS: {{ props.row.httpsv4 }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="v4 HTTP2">-->
+                                        <span>v4 HTTP2: {{ props.row.http2v4 }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="v6解析">-->
+                                        <span>aaaa: {{ props.row.aaaa }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="v6 HTTP">-->
+                                        <span>v6 HTTP: {{ props.row.ipv6 }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="v6 HTTPS">-->
+                                        <span>v6 HTTPS: {{ props.row.httpsv6 }};</span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="v6 HTTP2">-->
+                                        <span>v6 HTTP2: {{ props.row.http2v6 }}; </span>
+<!--                                    </el-form-item>-->
+                                    <h3>网络质量</h3>
+<!--                                    <el-form-item label="丢包率">-->
+                                        <span>丢包率: {{ props.row.loss }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="最短响应时间">-->
+                                        <span>最短响应时间: {{ props.row.min }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="平均响应时间">-->
+                                        <span>平均响应时间: {{ props.row.avg }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="最长响应时间">-->
+                                        <span>最长响应时间: {{ props.row.max }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="平均偏差">-->
+                                        <span>平均偏差: {{ props.row.mdev}}; </span>
+<!--                                    </el-form-item>-->
                                     <h3>是否存在被黑风险</h3>
-                                    <el-form-item label="是否被篡改">
-                                        <span>{{ props.row.hacked  }}；</span>
-                                    </el-form-item>
-                                    <el-form-item label="篡改的敏感词">
-                                        <span>{{ props.row.keyword }}</span>
-                                    </el-form-item>
+<!--                                    <el-form-item label="是否被篡改">-->
+                                        <span>是否被篡改: {{ props.row.hacked  }}; </span>
+<!--                                    </el-form-item>-->
+<!--                                    <el-form-item label="篡改的敏感词">-->
+                                        <span>篡改的敏感词: {{ props.row.keyword }}; </span>
+<!--                                    </el-form-item>-->
                                 </el-form>
                             </template>
                         </el-table-column>

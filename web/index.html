@@ -32,17 +32,18 @@
                         </el-input>
                     </template>
                     <el-table-column
-                        type="index">
+                        type="index"
+                        width="40">
                     </el-table-column>
                     <el-table-column
                             prop="name"
                             label="单位"
-                            width="190">
+                            width="210">
                     </el-table-column>
                     <el-table-column
                             prop="hostname"
                             label="网站"
-                            width="230">
+                            width="210">
                     </el-table-column>
                     <el-table-column
                             prop="ipv4"
@@ -84,6 +85,26 @@
                             label="得分"
                             sortable>
                     </el-table-column>
+                    <el-table-column
+                            label="网络质量"
+                            >
+                        <template slot-scope="scope">
+                            <el-popover trigger="click" placement="top">
+                                <p>丢包率: {{ scope.row.loss }}</p>
+                                <p>最短响应时间: {{ scope.row.min }} ms</p>
+                                <p>平均响应时间: {{ scope.row.avg}} ms</p>
+                                <p>最长响应时间: {{ scope.row.max}} ms</p>
+                                <p>平均偏差: {{ scope.row.mdev}} ms</p>
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tag
+                                            size="medium"
+                                            :type="popoverType(scope.row.speed)">
+                                        {{ scope.row.speed}}
+                                    </el-tag>
+                                </div>
+                            </el-popover>
+                        </template>
+                    </el-table-column>
                 </el-table-column>
             </el-table>
             <p>共<span>{{result.length}}</span>条数据&nbsp;&nbsp;&nbsp;&nbsp;测试时间 <span>{{time}}</span></p>
@@ -124,7 +145,22 @@
                         console.log(err);
                     });
             },
-        }
+            popoverType:function (val){
+                if(val==="优"){
+                    return "primary"
+                }
+                if(val==="良"){
+                    return "warning"
+                }
+                if(val==="差"){
+                    return "danger"
+                }
+                if(val==="无"){
+                    return "info"
+                }
+            }
+        },
+
     })
 </script>
 </body>
