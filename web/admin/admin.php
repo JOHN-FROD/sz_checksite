@@ -92,9 +92,6 @@ if ($stmt->fetch()){
 <!--                                    <el-form-item label="最长响应时间">-->
                                         <span>最长响应时间: {{ props.row.max }}; </span>
 <!--                                    </el-form-item>-->
-<!--                                    <el-form-item label="平均偏差">-->
-                                        <span>平均偏差: {{ props.row.mdev}}; </span>
-<!--                                    </el-form-item>-->
                                     <h3>是否存在被黑风险</h3>
 <!--                                    <el-form-item label="是否被篡改">-->
                                         <span>是否被篡改: {{ props.row.hacked  }}; </span>
